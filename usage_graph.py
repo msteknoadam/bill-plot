@@ -1,5 +1,6 @@
 import csv
 import matplotlib.pyplot as plt
+import matplotlib
 
 periods = []
 electricity = []
@@ -24,14 +25,18 @@ print("Periods:", periods)
 print("Electricity:", electricity)
 print("Water", water)
 
+matplotlib.rcParams['figure.figsize'] = (10.0, 7.5)
+
 plt.plot(periods, electricity, 'r', label="Electricity")
 plt.plot(periods, water, 'b', label="Water")
 plt.plot(periods, electricity, 'ro')
 plt.plot(periods, water, 'bo')
+plt.xticks(periods, rotation='vertical')
+plt.subplots_adjust(bottom=0.15)
 plt.title('Electricity and Water Bills Per Payment Period')
 plt.xlabel('Period')
 plt.ylabel('Bill (₺)')
 plt.ylim(bottom=0)
 plt.legend(handlelength=3)
-
+plt.savefig('example-plot.png')
 plt.show()
