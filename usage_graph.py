@@ -16,8 +16,16 @@ with open('monthly_bills.csv') as csv_file:
         else:
             # print(f'\t{row[0]} - {row[1]} - {row[2]}')
             periods.append(row[0])
-            electricity.append(float(row[1]))
-            water.append(float(row[2]))
+            try:
+                electricity.append(float(row[1]))
+            except:
+                # Use last month's value if the current value is not defined etc.
+                electricity.append(electricity[-1])
+            try:
+                water.append(float(row[2]))
+            except:
+                # Use last month's value if the current value is not defined etc.
+                water.append(water[-1])
             line_count += 1
         # print(f'Processed {line_count} lines.')
 
